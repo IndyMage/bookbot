@@ -1,9 +1,12 @@
 def main():
     with open("books/frankenstein.txt") as f:
         file_contents = f.read()
-   #print(file_contents)
-    print(words(file_contents))
-    print(chars(file_contents))
+    #print(file_contents)
+    word_count = words(file_contents)
+    char_dict = chars(file_contents)
+    report(word_count, char_dict)
+    #print(word_count, char_dict)
+   
 
 def words(text):
     words = len(text.split())
@@ -74,4 +77,25 @@ def chars(text):
     for char in lowered_string:
         letters[char] += 1        
     return(letters)
+
+def report(word_count, char_dict):
+    
+    alpha_list = []
+    for char in char_dict:
+        if char.isalpha():
+            char_info = {"char": char, "num": char_dict[char]}
+            alpha_list.append(char_info)
+    alpha_by_values = sorted(alpha_list, key=lambda item: item["num"], reverse=True)
+        
+        
+    print("--- Begin report of books/frankenstein.txt ---")
+    print(f"{word_count} words found in the document")
+    print("")
+    for alpha in alpha_by_values:
+        print(f"The '{alpha["char"]}' character was found {alpha["num"]} times")
+
+    
+
+
+
 main()
