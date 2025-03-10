@@ -94,8 +94,4 @@ def report(word_count, char_dict):
     for alpha in alpha_by_values:
         print(f"The '{alpha["char"]}' character was found {alpha["num"]} times")
 
-    
-
-
-
 main()
